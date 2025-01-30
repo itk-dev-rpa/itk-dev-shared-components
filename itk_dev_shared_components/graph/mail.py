@@ -122,10 +122,29 @@ def get_folder_id_from_path(user: str, folder_path: str, graph_access: GraphAcce
     # Get child folders
     for child_folder in child_folders:
         endpoint = f"https://graph.microsoft.com/v1.0/users/{user}/mailFolders/{folder_id}/childFolders"
-        response = get_request(endpoint, graph_access).json()
-        folder_id = _find_folder(response, child_folder)
+        folder_id = recursive_find_folder(endpoint, graph_access, child_folder)
         if folder_id is None:
             raise ValueError(f"Child folder '{child_folder}' not found under '{main_folder}' for user '{user}'.")
+
+    return folder_id
+
+
+def recursive_find_folder(endpoint: str, graph_access: GraphAccess, target_folder: str) -> str:
+    """Look for target folder at endpoint, recursively going through pagination if available and necessary.
+
+    Args:
+        endpoint: Graph endpoint to lookup folder.
+        graph_access: Access token for Graph API.
+        target_folder: ID of target folder.
+
+    Returns:
+        Return folder ID.
+    """
+    response = get_request(endpoint, graph_access).json()
+    folder_id = _find_folder(response, target_folder)
+
+    if folder_id is None and '@odata.nextLink' in response:
+        return recursive_find_folder(response['@odata.nextLink'], graph_access, target_folder)
 
     return folder_id
 

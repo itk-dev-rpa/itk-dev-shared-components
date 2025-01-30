@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.8.3] - 2024-12-02
+
+### Fixed
+
+- Child folders in Graph are now found, even with more than 10 child folders to go through.
+
+## [2.8.2] - 2024-12-02
+
+### Fixed
+
+- Approving cases when the person is marked as "Afsluttet" now works.
+
 ## [2.8.1] - 2024-12-02
 
 ### Fixed
@@ -187,7 +199,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[Unreleased]: https://github.com/itk-dev-rpa/ITK-dev-shared-components/compare/2.8.1...HEAD
+[Unreleased]: https://github.com/itk-dev-rpa/ITK-dev-shared-components/compare/2.8.3...HEAD
+[2.8.3]: https://github.com/itk-dev-rpa/ITK-dev-shared-components/releases/tag/2.8.3
+[2.8.2]: https://github.com/itk-dev-rpa/ITK-dev-shared-components/releases/tag/2.8.2
 [2.8.1]: https://github.com/itk-dev-rpa/ITK-dev-shared-components/releases/tag/2.8.1
 [2.8.0]: https://github.com/itk-dev-rpa/ITK-dev-shared-components/releases/tag/2.8.0
 [2.7.1]: https://github.com/itk-dev-rpa/ITK-dev-shared-components/releases/tag/2.7.1

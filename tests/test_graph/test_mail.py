@@ -26,6 +26,8 @@ class EmailTest(unittest.TestCase):
 
         # Define mail user and folders
         cls.user = os.environ['MAIL_USER']
+        cls.folder_prefix = os.environ['MAIL_FOLDER_PREFIX']
+        cls.folder_count = os.environ['MAIL_FOLDER_COUNT']
         cls.folder1 = os.environ['MAIL_FOLDER1']
         cls.folder2 = os.environ['MAIL_FOLDER2']
 
@@ -39,6 +41,10 @@ class EmailTest(unittest.TestCase):
         self.assertNotEqual(len(emails), 0, "No emails found in test folder!")
         self.assertEqual(len(emails), 1, "More than 1 email found in test folder!")
         email = emails[0]
+
+        # Check more than 10 folders
+        for i in range(int(self.folder_count)):
+            mail.get_emails_from_folder(self.user, f"{self.folder_prefix}{i}", self.graph_access)
 
         # Check email subject and body
         self.assertEqual(email.subject, "Test subject")

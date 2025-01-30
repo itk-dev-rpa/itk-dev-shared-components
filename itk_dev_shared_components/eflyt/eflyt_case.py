@@ -171,7 +171,7 @@ def check_all_approved(browser: webdriver.Chrome) -> bool:
 
     for row in rows:
         row_status = row.find_element(By.XPATH, "td[6]").text
-        if row_status != "Godkendt":
+        if row_status not in ("Godkendt", "Afsluttet"):
             return False
     return True
 
